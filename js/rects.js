@@ -7,6 +7,7 @@ var Rects = (function(){
 
   //批量创建rect
   _create = function(arr,fn,ani,bec){ //fn即传入的，创建rect的方法，num为一次性创建多少个rect
+    rectList = [];
     if(!fn){
       return false;
     }
@@ -20,13 +21,20 @@ var Rects = (function(){
   };
 
   //随机获取一个rect
-  _getOne = function(){
+  _getOneRect = function(){
     var rdm = Math.floor(Math.random()*9);
     return rectList[rdm];
   };
 
+  _init = function(canvas){
+    for(var i of rectList){
+      i.init(canvas);
+    }
+  }
+
   return {
     create:_create,
-    getOne:_getOne
+    init:_init,
+    getOneRect:_getOneRect
   };
 })();
